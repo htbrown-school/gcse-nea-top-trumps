@@ -1,0 +1,22 @@
+{
+  "name": "gcse-nea-top-trumps",
+  "version": "1.0.0",
+  "description": "(AQA 8520) Sample NEA Task - Dog Top Trumps",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htbrown-school/gcse-nea-top-trumps.git"
+  },
+  "author": "HTBrown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/htbrown-school/gcse-nea-top-trumps/issues"
+  },
+  "homepage": "https://github.com/htbrown-school/gcse-nea-top-trumps#readme",
+  "dependencies": {
+    "input": "^1.0.1"
+  }
+}
