@@ -1,13 +1,13 @@
+import * as input from 'input';
+
 export class MenuHandler {
     constructor() {  }
 
-    mainMenu() {
-        console.log("Dog Top Trumps");
-        console.log();
-        console.log("MAIN MENU");
-        console.log("1. Play");
-        console.log("2. Quit");
+    async mainMenu(): Promise<number> {
+        console.log("=== MAIN MENU ===");
 
-        
+        let options: object[] = [{name: "Play", value: 0}, {name: "Quit", value: 1}];
+        let result = await input.select("Choose an option: ", options);
+        return result;
     }
 }
