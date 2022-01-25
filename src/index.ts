@@ -1,9 +1,19 @@
 import { MenuHandler } from './utils';
+import Game from './game';
 
-const menuHandler: MenuHandler = new MenuHandler();
+export const menuHandler: MenuHandler = new MenuHandler();
+const game: Game = new Game();
 
-class Main {
-    constructor() { }
-
-    
+const main = async () => {
+    let menuResult = await menuHandler.mainMenu();
+    switch (menuResult) {
+        case 0:
+            game.main();
+            break;
+        case 1:
+            console.log("Goodbye.")
+            process.exit(1);
+    }
 }
+
+main();

@@ -18,5 +18,8 @@
   "homepage": "https://github.com/htbrown-school/gcse-nea-top-trumps#readme",
   "dependencies": {
     "input": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.12"
   }
 }
