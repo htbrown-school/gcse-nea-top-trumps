@@ -1,0 +1,30 @@
+Shepherd
+Labrador
+Retriever
+Bulldog
+Husky
+Chihuahua
+Poodle
+Pug
+Dobermann
+Shiba-Inu
+Rottweiler
+Boxer
+Greyhound
+Collie
+Spaniel
+Bloodhound
+Terrier
+Sheepdog
+Dachshund
+Spitz
+Pointer
+Great Dane
+Hound
+Keeshond
+Schnauzer
+Pomeranian
+Rhodesian Ridgeback
+Shih Tzu
+Corgi
+St. Bernard
