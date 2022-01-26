@@ -1,7 +1,8 @@
-import { MenuHandler } from './utils';
+import { MenuHandler, Tools } from './utils';
 import Game from './game';
 
 export const menuHandler: MenuHandler = new MenuHandler();
+export const tools: Tools = new Tools();
 const game: Game = new Game();
 
 const main = async () => {

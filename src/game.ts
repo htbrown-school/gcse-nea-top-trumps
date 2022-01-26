@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as readline from 'readline';
 
-import { menuHandler } from "./index";
+import { menuHandler, tools } from "./index";
 import { Settings } from "./utils";
 
 interface Card {
@@ -20,20 +20,27 @@ class Game {
 
     async main() {
         this.settings = await menuHandler.setupMenu();
-        this.loadCards();
+        console.log(await this.loadCards());
+
     }
 
-    private loadCards() {
+    private async loadCards() {
+        console.clear();
+        console.log("Reading data from file...")
+
         let allCards: string[] = [];
         
         let lineReader = readline.createInterface({
             input: fs.createReadStream("dogs.txt")
         })
-        lineReader.on("line", (line) => {
+        lineReader.on("line", (line: string) => {
             allCards.push(line);
         })
-
-        console.log(allCards);
+        lineReader.on("close", async () => {
+            console.log("Data read from file.");
+            allCards = await tools.shuffle(allCards);
+        })
+        return allCards;
     }
 }
 
