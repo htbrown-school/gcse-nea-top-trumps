@@ -1,4 +1,6 @@
 import * as input from 'input';
+import * as fs from 'fs';
+import * as readline from 'readline';
 
 export interface Settings {
     cards: number;
@@ -8,7 +10,8 @@ export class Tools {
     constructor() {  }
 
     shuffle(array) {
-        let currentIndex = array.length,  randomIndex;
+        let currentIndex: number = array.length,  
+            randomIndex: number;
 
         while (currentIndex != 0) {
             randomIndex = Math.floor(Math.random() * currentIndex);
@@ -20,6 +23,24 @@ export class Tools {
 
         return array;
     }
+
+    async loadFile(file: string): Promise<string[]> {
+        console.log('Reading data from file...');
+        let returnArray: string[] = [];
+        let fileStream = fs.createReadStream(file);
+        let rl = readline.createInterface({
+            input: fileStream,
+            crlfDelay: Infinity
+        });
+
+        for await (let line of rl) {
+            returnArray.push(line);
+        }
+
+        console.log('Data read from file.');
+
+        return returnArray;
+    } 
 }
 
 export class MenuHandler {

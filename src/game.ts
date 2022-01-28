@@ -16,31 +16,39 @@ class Game {
     constructor() {}
 
     private settings: Settings;
-    private cards: Card[];
+    private playerCards: Card[] = [];
+    private computerCards: Card[] = [];
 
     async main() {
         this.settings = await menuHandler.setupMenu();
-        console.log(await this.loadCards());
-
+        await this.loadCards();
+        console.clear();
     }
+
+
 
     private async loadCards() {
         console.clear();
-        console.log("Reading data from file...")
-
-        let allCards: string[] = [];
+        console.log('Loading cards...');
+        let allCards: string[] = await tools.loadFile('dogs.txt');
+        allCards = tools.shuffle(allCards);
         
-        let lineReader = readline.createInterface({
-            input: fs.createReadStream("dogs.txt")
-        })
-        lineReader.on("line", (line: string) => {
-            allCards.push(line);
-        })
-        lineReader.on("close", async () => {
-            console.log("Data read from file.");
-            allCards = await tools.shuffle(allCards);
-        })
-        return allCards;
+        for (let i = 0; i < this.settings.cards; i++) {
+            let newCard: Card = {
+                name: allCards[i],
+                exercise: Math.floor(Math.random() * 5),
+                intelligence: Math.floor(Math.random() * 100),
+                friendliness: Math.floor(Math.random() * 10),
+                drool: Math.floor(Math.random() * 10)
+            }
+
+            if (i % 2 === 0) {
+                this.playerCards.push(newCard);
+            } else {
+                this.computerCards.push(newCard);
+            }
+        }
+        console.log('Cards loaded.');
     }
 }
 
