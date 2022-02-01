@@ -2,51 +2,63 @@ import * as input from 'input';
 import * as fs from 'fs';
 import * as readline from 'readline';
 
+import { Card } from './game';
+
 export interface Settings {
     cards: number;
 }
 
 export class Tools {
-    constructor() {  }
+    constructor() {}
 
     shuffle(array) {
-        let currentIndex: number = array.length,  
-            randomIndex: number;
+        let currentIndex: number = array.length,
+        randomIndex: number;
 
         while (currentIndex != 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
 
-            [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+        ];
         }
 
         return array;
     }
 
+    displayCard(card: Card): void {
+        console.log(card.name.toUpperCase());
+        console.log(`Exercise: ${card.exercise}`);
+        console.log(`Intelligence: ${card.intelligence}`);
+        console.log(`Friendliness: ${card.friendliness}`);
+        console.log(`Drool: ${card.drool}`);
+    }
+
     async loadFile(file: string): Promise<string[]> {
-        console.log('Reading data from file...');
+        console.log("Reading data from file...");
         let returnArray: string[] = [];
         let fileStream = fs.createReadStream(file);
         let rl = readline.createInterface({
-            input: fileStream,
-            crlfDelay: Infinity
+        input: fileStream,
+        crlfDelay: Infinity,
         });
 
         for await (let line of rl) {
-            returnArray.push(line);
+        returnArray.push(line);
         }
 
-        console.log('Data read from file.');
+        console.log("Data read from file.");
 
         return returnArray;
-    } 
+    }
 }
 
 export class MenuHandler {
     constructor() {  }
 
-    private titleGen(content: string): string {
+    titleGen(content: string): string {
         return `===== ${ content.toUpperCase() } =====`;
     }
 

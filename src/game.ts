@@ -4,7 +4,7 @@ import * as readline from 'readline';
 import { menuHandler, tools } from "./index";
 import { Settings } from "./utils";
 
-interface Card {
+export interface Card {
     name: string;
     exercise: number;
     intelligence: number;
@@ -19,13 +19,23 @@ class Game {
     private playerCards: Card[] = [];
     private computerCards: Card[] = [];
 
+    private roundNumber: number = 1;
+
     async main() {
         this.settings = await menuHandler.setupMenu();
         await this.loadCards();
-        console.clear();
+        await this.roundLoop();
     }
 
-
+    private async roundLoop() {
+        console.clear();
+        console.log(menuHandler.titleGen(`round ${this.roundNumber}`));
+        console.log();
+        while (this.playerCards.length !== 0 && this.computerCards.length !== 0) {
+            tools.displayCard(this.playerCards[0]);
+            let choice: number;
+        }
+    }
 
     private async loadCards() {
         console.clear();
