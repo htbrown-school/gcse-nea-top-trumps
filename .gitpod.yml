@@ -1,0 +1,9 @@
+# Auto generated Gitpod configuration file.
+
+tasks:
+  - init: npm install
+
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
