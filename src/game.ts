@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as readline from 'readline';
+import * as input from 'input';
 
 import { menuHandler, tools } from "./index";
 import { Settings } from "./utils";
@@ -33,7 +34,9 @@ class Game {
         console.log();
         while (this.playerCards.length !== 0 && this.computerCards.length !== 0) {
             tools.displayCard(this.playerCards[0]);
-            let choice: number;
+            let options: object[] = [{name: "Exercise", value: 0}, {name: "Intelligence", value: 1}, {name: "Friendliness", value: 2}, {name: "Drool", value: 3}];
+            let choice: number = await input.select('Choose which statistic you want to compare: ');
+            console.log(choice);
         }
     }
 
