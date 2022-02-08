@@ -66,7 +66,11 @@ export class MenuHandler {
         console.clear();
         console.log(this.titleGen("main menu"));
 
-        let options: object[] = [{name: "Play", value: 0}, {name: "Quit", value: 1}];
+        let options: object[] = [
+          { name: "Play", value: 0 },
+          { name: "Rules", value: 1 },
+          { name: "Quit", value: 2 },
+        ];
         let result = await input.select("Choose an option: ", options);
 
         console.clear();

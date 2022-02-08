@@ -26,6 +26,17 @@ class Game {
         await this.roundLoop();
     }
 
+    async rules() {
+        console.log(menuHandler.titleGen("rules"));
+        console.log();
+        console.log("Exercise: up to 10, higher is better.");
+        console.log("Intelligence: up to 100, higher is better.");
+        console.log("Friendliness: up to 10, higher is better.");
+        console.log("Drool: up to 10, lower is better.")
+        console.log();
+        await input.text("Press enter to continue...");
+    }
+
     private async roundLoop() {
         while (this.playerCards.length !== 0 && this.computerCards.length !== 0) {
             console.clear();
