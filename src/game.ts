@@ -1,5 +1,3 @@
-import * as fs from "fs";
-import * as readline from 'readline';
 import * as input from 'input';
 
 import { menuHandler, tools } from "./index";
