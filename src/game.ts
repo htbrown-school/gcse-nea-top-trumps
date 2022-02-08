@@ -31,6 +31,8 @@ class Game {
             console.clear();
             console.log(menuHandler.titleGen(`round ${this.roundNumber}`));
             console.log();
+            console.log(`Player: ${this.playerCards.length}    Computer: ${this.computerCards.length}`);
+            console.log();
             console.log("Player's card:");
             console.log();
             tools.displayCard(this.playerCards[0]);
