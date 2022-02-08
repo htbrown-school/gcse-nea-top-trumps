@@ -29,14 +29,34 @@ class Game {
     }
 
     private async roundLoop() {
-        console.clear();
-        console.log(menuHandler.titleGen(`round ${this.roundNumber}`));
-        console.log();
         while (this.playerCards.length !== 0 && this.computerCards.length !== 0) {
+            console.clear();
+            console.log(menuHandler.titleGen(`round ${this.roundNumber}`));
+            console.log();
+            console.log("Player's card:");
+            console.log();
             tools.displayCard(this.playerCards[0]);
+            console.log();
             let options: object[] = [{name: "Exercise", value: 0}, {name: "Intelligence", value: 1}, {name: "Friendliness", value: 2}, {name: "Drool", value: 3}];
-            let choice: number = await input.select('Choose which statistic you want to compare: ');
-            console.log(choice);
+            let choice: number = await input.select('Choose which statistic you want to compare: ', options);
+
+            console.clear();
+            console.log(menuHandler.titleGen(`round ${this.roundNumber}`));
+            console.log();
+            console.log("Computer's card:");
+            console.log();
+            tools.displayCard(this.computerCards[0]);
+            console.log();
+
+            await this.compareCards(this.playerCards[0], this.computerCards[0], choice);
+            this.roundNumber++;
+            console.clear();
+        }
+
+        if (this.computerCards.length === 0) {
+            console.log(menuHandler.titleGen("player wins!"));
+        } else {
+            console.log(menuHandler.titleGen("computer wins!"));
         }
     }
 
@@ -62,6 +82,52 @@ class Game {
             }
         }
         console.log('Cards loaded.');
+    }
+
+    private async compareCards(player: Card, computer: Card, stat: number) {
+        let statName: string;
+        switch(stat) {
+            case 0:
+                statName = "exercise";
+                break;
+            case 1:
+                statName = "intelligence";
+                break;
+            case 2:
+                statName = "friendliness";
+                break;
+            case 3:
+                statName = "drool";
+                break;
+        }
+
+        if (statName !== "drool" && (player[statName] > computer[statName])) {
+            console.log("Player wins round!");
+            this.playerCards.push(computer);
+            this.playerCards.push(player);
+            this.playerCards.splice(0, 1);
+            this.computerCards.splice(0, 1);
+        } else if (statName === "drool" && (player[statName] < computer[statName])) {
+            console.log("Player wins round!");
+            this.playerCards.push(computer);
+            this.playerCards.push(player);
+            this.playerCards.splice(0, 1);
+            this.computerCards.splice(0, 1);
+        } else if (player[statName] === computer[statName]) {
+            console.log("Draw!");
+            this.playerCards.push(player);
+            this.playerCards.splice(0, 1);
+            this.computerCards.push(computer);
+            this.computerCards.splice(0, 1);
+        } else {
+            console.log("Computer wins round!");
+            this.computerCards.push(player);
+            this.computerCards.push(computer);
+            this.playerCards.splice(0, 1);
+            this.computerCards.splice(0, 1);
+        }
+        console.log();
+        await input.text("Press enter to continue...");
     }
 }
 
