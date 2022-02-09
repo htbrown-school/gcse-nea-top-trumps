@@ -69,6 +69,8 @@ class Game {
         } else {
             console.log(menuHandler.titleGen("computer wins!"));
         }
+        console.log();
+        await input.text("Press enter to continue...");
     }
 
     private async loadCards() {
